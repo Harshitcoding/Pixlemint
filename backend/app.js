@@ -8,8 +8,7 @@ const app = express()
 app.use(cookieParser());
 app.use(cors({
   origin: ["http://localhost:5173",  // tumhari Vite frontend URL
-  "https://pixlemint-git-main-harshit-khandelwals-projects.vercel.app",  // Your deployed frontend
-    "https://pixlemint-2tbfae5ad-harshit-khandelwals-projects.vercel.app"],
+"https://pixlemint-63ra.vercel.app"],
       credentials: true
 }));
 
