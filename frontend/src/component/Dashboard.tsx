@@ -6,13 +6,13 @@ const Dashboard = () => {
   const [code, setCode] = useState<string>("");
   const [response, setResponse] = useState<any>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const API = import.meta.env.VITE_API_URL;
+
   async function handleSubmit() {
     if (!code.trim()) return;
 
     setIsLoading(true);
     try {
-      const res = await fetch(`${API}/code/review`, {
+      const res = await fetch("http://localhost:3000/code/review", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -21,7 +21,7 @@ const Dashboard = () => {
       });
 
       const data = await res.json();
-      setResponse(data);
+      setResponse(data); // expecting backend to send markdown text
     } catch (error) {
       console.error(error);
       setResponse({
@@ -33,60 +33,61 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#1e1e1e] py-10 px-5 text-white">
+    <div className="min-h-screen bg-gray-800 py-10 px-5">
       <div className="max-w-7xl mx-auto">
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          
-          {/* LEFT CARD */}
-          <div className="bg-[#2a2a2a] rounded-xl p-6 shadow-lg border border-gray-700">
-            <label className="block text-sm font-semibold text-gray-300 mb-3">
-              Your Code
-            </label>
-
-            <textarea
-              placeholder="Paste your code here..."
-              onChange={(e) => setCode(e.target.value)}
-              value={code}
-              className="w-full h-96 p-3 text-sm font-mono bg-[#1b1b1b] text-gray-100 border border-gray-700 rounded-lg resize-y focus:ring-2 focus:ring-gray-400 focus:outline-none"
-            />
+          {/* Left: Code Input */}
+          <div className="bg-gray-500 rounded-lg border border-gray-200 p-6 shadow-sm">
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Your Code
+              </label>
+              <textarea
+                placeholder="Paste your code here..."
+                onChange={(e) => setCode(e.target.value)}
+                value={code}
+                className="w-full h-96 p-3 text-sm font-mono border border-gray-300 rounded-md resize-y bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
+              />
+            </div>
 
             <button
               onClick={handleSubmit}
               disabled={isLoading || !code.trim()}
-              className="w-full mt-5 py-3 px-6 text-sm font-semibold text-white bg-gray-700 rounded-lg hover:bg-gray-600 transition-colors disabled:bg-gray-500 disabled:cursor-not-allowed"
+              className="w-full py-3 px-6 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
             >
               {isLoading ? "Analyzing..." : "Review Code"}
             </button>
           </div>
 
-          {/* RIGHT CARD */}
-          <div className="bg-[#2a2a2a] rounded-xl p-6 shadow-lg border border-gray-700">
-            <label className="block text-sm font-semibold text-gray-300 mb-4">
+          {/* Right: Review Output */}
+          <div className="bg-gray-800 rounded-lg border border-gray-200 p-6 shadow-sm text-white">
+            <label className="block text-sm font-medium text-gray-700 mb-4">
               Review Results
             </label>
 
-            <div className="bg-[#1b1b1b] border border-gray-700 rounded-lg p-5 min-h-[450px] max-h-[450px] overflow-y-auto">
+            <div className="bg-gray-800 border border-gray-200 rounded-md p-5 min-h-[450px] max-h-[450px] overflow-y-auto prose prose-sm prose-gray max-w-none">
               {response ? (
-                response.error ? (
-                  <div className="text-red-400 bg-red-900/20 p-3 rounded border border-red-700 text-sm">
-                    {response.error}
-                  </div>
-                ) : (
-                  <div className="prose prose-sm max-w-none text-gray-200">
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                      {response.review || response}
-                    </ReactMarkdown>
-                  </div>
-                )
+                <>
+                  {response.error ? (
+                    <div className="text-red-600 text-sm p-3 bg-red-50 rounded border border-red-200">
+                      {response.error}
+                    </div>
+                  ) : (
+                    <div className="prose prose-sm max-w-none text-black">
+                      <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                        {response.review || response}
+                      </ReactMarkdown>
+                    </div>
+                  )}
+                </>
               ) : (
-                <div className="flex items-center justify-center h-full text-gray-500 text-sm">
+                <div className="flex items-center justify-center h-full text-gray-400 text-sm text-center">
                   Submit your code to see the review
                 </div>
               )}
             </div>
           </div>
-
         </div>
       </div>
     </div>

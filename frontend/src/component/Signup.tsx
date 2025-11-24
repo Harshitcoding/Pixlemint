@@ -10,40 +10,32 @@ const Signup = () => {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const Navigate = useNavigate();
-    const API = import.meta.env.VITE_API_URL;
-async function handlesubmit(e: any) {
-    e.preventDefault();
-    setError("");
-    setLoading(true);
-    try {
-        const payload = {
-            FirstName: firstname,
-            LastName: lastname,
-            email: email,
-            password: password
-        };
 
-        const res = await axios.post(
-            `${API}/auth/register`,
-            payload,
-            {
-                headers: {
-                    "Content-Type": "application/json"
-                },
-            }
-        );
+    async function handlesubmit(e:any) {
+        e.preventDefault()
+        setError("")
+        setLoading(true)
+        try {
+            const payload = {
+                FirstName: firstname,
+                LastName: lastname,
+                email: email,
+                password: password
+            };
+            const res = await axios.post("http://localhost:3000/auth/register", payload,)
+             localStorage.setItem("token", res.data.data.token);
 
-        localStorage.setItem("token", res.data.data.token);
-        console.log("signup success:", res.data);
-        Navigate("/home");
-    } catch (error: any) {
-        setError(error.response?.data?.message || "Signup Failed");
-        console.log(error);
-    } finally {
-        setLoading(false);
+            console.log("signup success:", res.data)
+            Navigate("/home");
+        } catch (error:any) {
+            setError(error.response?.data?.message || "signup Failed")
+            console.log(error)
+        }
+        finally {
+            setLoading(false);
+        }
+
     }
-}
-
 
     return (
      <div className="flex h-screen">

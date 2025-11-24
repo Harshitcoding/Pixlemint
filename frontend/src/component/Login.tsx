@@ -7,7 +7,7 @@ const Login = () => {
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(false)
     const Navigate = useNavigate()
-    const API = import.meta.env.VITE_API_URL;
+
     async function handlesubmit(e:any) {
         e.preventDefault()
         setError("")
@@ -19,11 +19,7 @@ const Login = () => {
                 password: password
 
             }
-            const res = await axios.post(`${API}/auth/login`, payload,{
-                headers: {
-                    "Content-Type": "application/json"
-                },
-            })
+            const res = await axios.post("http://localhost:3000/auth/login", payload)
             localStorage.setItem("token", res.data.data.token);
             console.log("login successfully", res.data)
             Navigate("/home")
@@ -59,7 +55,7 @@ const Login = () => {
             {error && <div style={{ color: "red" }}>{error}</div>}
             <Link 
             className="text-blue-400 hover:underline" 
-            to="/signup">Create new account
+            to="/signup">Create new account Singup
             </Link>
         </form>
        </div>
