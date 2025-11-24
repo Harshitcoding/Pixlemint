@@ -7,9 +7,8 @@ const cookieParser = require('cookie-parser');
 const app = express()
 app.use(cookieParser());
 app.use(cors({
-  origin: ["http://localhost:5173",  // tumhari Vite frontend URL
-"https://pixlemint-63ra.vercel.app"],
-      credentials: true
+  origin: "http://localhost:5173",  // tumhari Vite frontend URL
+  credentials: true
 }));
 
 require("dotenv").config()

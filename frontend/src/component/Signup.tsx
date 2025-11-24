@@ -10,7 +10,6 @@ const Signup = () => {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const Navigate = useNavigate();
-    const VITE_API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000"
 
     async function handlesubmit(e:any) {
         e.preventDefault()
@@ -23,7 +22,7 @@ const Signup = () => {
                 email: email,
                 password: password
             };
-            const res = await axios.post(`${VITE_API_URL}/auth/register`, payload,)
+            const res = await axios.post("http://localhost:3000/auth/register", payload,)
              localStorage.setItem("token", res.data.data.token);
 
             console.log("signup success:", res.data)

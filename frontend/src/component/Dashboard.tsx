@@ -6,13 +6,12 @@ const Dashboard = () => {
   const [code, setCode] = useState<string>("");
   const [response, setResponse] = useState<any>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const VITE_API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000"
   async function handleSubmit() {
     if (!code.trim()) return;
 
     setIsLoading(true);
     try {
-      const res = await fetch(`${VITE_API_URL}/code/review`, {
+      const res = await fetch("http://localhost:3000/code/review", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
