@@ -11,7 +11,11 @@ connectDB()
 
 // CORS must come BEFORE other middleware
 app.use(cors({
-  origin: ["http://localhost:5173", "https://pixlemint.vercel.app"],
+  origin: [
+    "http://localhost:5173",
+    "https://pixlemint.vercel.app",
+    "https://pixlemint-1azw.vercel.app"
+  ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Cookie']
@@ -25,5 +29,10 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use("/auth", authRoutes);
 app.use('/code', reviewRoutes)
+
+// Catch-all 404 handler for undefined routes
+app.use((req, res, next) => {
+  res.status(404).json({ error: 'Route not found' });
+});
 
 module.exports = app
