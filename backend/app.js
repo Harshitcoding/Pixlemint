@@ -27,6 +27,14 @@ app.options('*', cors());
 app.use(cookieParser());
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.get('/', (req, res) => {
+  res.json({ message: 'Backend is running!', status: 'OK' });
+});
+
+app.get('/health', (req, res) => {
+  res.json({ status: 'healthy' });
+});
+
 app.use("/auth", authRoutes);
 app.use('/code', reviewRoutes)
 
