@@ -22,7 +22,7 @@ const Signup = () => {
                 email: email,
                 password: password
             };
-            const res = await axios.post("http://localhost:3000/auth/register", payload,)
+            const res = await axios.post("https://pixlemintt.onrender.com/auth/register", payload,)
              localStorage.setItem("token", res.data.data.token);
 
             console.log("signup success:", res.data)

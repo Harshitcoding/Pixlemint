@@ -19,7 +19,7 @@ const Login = () => {
                 password: password
 
             }
-            const res = await axios.post("http://localhost:3000/auth/login", payload)
+            const res = await axios.post("https://pixlemintt.onrender.com/auth/login", payload)
             localStorage.setItem("token", res.data.data.token);
             console.log("login successfully", res.data)
             Navigate("/home")

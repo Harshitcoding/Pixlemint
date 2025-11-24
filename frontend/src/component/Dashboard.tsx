@@ -12,7 +12,7 @@ const Dashboard = () => {
 
     setIsLoading(true);
     try {
-      const res = await fetch("http://localhost:3000/code/review", {
+      const res = await fetch("https://pixlemintt.onrender.com/code/review", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
