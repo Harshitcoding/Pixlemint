@@ -1,20 +1,20 @@
 const mongoose = require('mongoose');
 
 const MessageSchema = new mongoose.Schema({
-    title : {
-        type : String,
-        enum :['user','ai'],
-        required:true
+    type: {
+        type: String,
+        enum: ['user', 'ai'],
+        required: true
     },
-    content:{
-        type:String,
-        required:true
+    content: {
+        type: String,
+        required: true
     },
-    timeStamp : {
-        type : Date,
-        default:Date.now
+    timestamp: {
+        type: Date,
+        default: Date.now
     }
-})
+});
 
 const ChatSchema = new mongoose.Schema({
     userId: {
@@ -31,7 +31,8 @@ const ChatSchema = new mongoose.Schema({
         default: ''
     },
     messages: [MessageSchema]
-}, 
-{
-    timestamps: true  // Automatically adds createdAt and updatedAt
+}, {
+    timestamps: true
 });
+
+module.exports = mongoose.model('Chat', ChatSchema);
