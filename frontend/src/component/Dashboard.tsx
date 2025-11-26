@@ -166,13 +166,13 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-linear-to-br from-slate-900 via-gray-600 to-slate-900">
       <div className="max-w-7xl mx-auto p-6">
         
         <div className="flex gap-6">
           
           {isAuthenticated && (
-            <div className="w-64 bg-slate-800/50 backdrop-blur rounded-xl border border-purple-500/20 p-4 flex-shrink-0 h-[calc(100vh-48px)] flex flex-col">
+            <div className="w-64 bg-slate-800/50 backdrop-blur rounded-xl border border-purple-500/20 p-4 flex-shrink:0 h-[calc(100vh-48px)] flex flex-col">
               <button
                 onClick={startNewChat}
                 className="w-full px-4 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors font-medium mb-4 flex items-center justify-center gap-2"
@@ -212,7 +212,7 @@ const Dashboard = () => {
                               e.stopPropagation()
                               deleteSession(session._id)
                             }}
-                            className="opacity-0 group-hover:opacity-100 text-red-400 hover:text-red-300 transition-opacity flex-shrink-0"
+                            className="opacity-0 group-hover:opacity-100 text-red-400 hover:text-red-300 transition-opacity flex-shrink:0"
                           >
                             <Trash2 className="w-4 h-4" />
                           </button>
@@ -278,7 +278,7 @@ const Dashboard = () => {
                     {messages.map((msg, index) => (
                       <div key={index} className={`flex gap-4 ${msg.type === "user" ? "justify-end" : ""}`}>
                         {msg.type === "ai" && (
-                          <div className="w-8 h-8 rounded-full bg-purple-600 flex items-center justify-center flex-shrink-0">
+                          <div className="w-8 h-8 rounded-full bg-purple-600 flex items-center justify-center flex-shrink:0">
                             <Code2 className="w-4 h-4 text-white" />
                           </div>
                         )}
@@ -298,7 +298,7 @@ const Dashboard = () => {
                         </div>
                         
                         {msg.type === "user" && (
-                          <div className="w-8 h-8 rounded-full bg-slate-600 flex items-center justify-center flex-shrink-0">
+                          <div className="w-8 h-8 rounded-full bg-slate-600 flex items-center justify-center flex-shrink:0">
                             <span className="text-white text-xs font-bold">YOU</span>
                           </div>
                         )}
