@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const MessageSchema = new mongoose.Schema({
     type : {
         type : String,
-        enum :[user,ai],
+        enum :['user','ai'],
         required:true
     },
     content:{
