@@ -55,13 +55,13 @@ const Login = () => {
             {error && <div style={{ color: "red" }}>{error}</div>}
             <Link 
             className="text-blue-400 hover:underline" 
-            to="/signup">Create new account Singup
+            to="/signup">Create new account Singup?
             </Link>
         </form>
        </div>
        <div className="flex-1  flex items-center justify-center">
         <img
-        src="/public/ai.png"
+        src="/public/ai.jpg"
         className="object-cover w-full h-full"
         />
        </div>
