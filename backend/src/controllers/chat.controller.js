@@ -21,7 +21,7 @@ exports.createChat = async (req,res) => {
 
 exports.getAllChats = async(req,res) => {
     try {
-        const UserId = req.body.id
+        const UserId = req.user.id
         const chats = await Chat.find({UserId})
         .select('title preview createdAt updatedAt')
         .sort({updatedAt: -1})
@@ -36,7 +36,7 @@ exports.getAllChats = async(req,res) => {
 exports.getChatById = async(req,res) => {
     try {
         const UserId = req.user.id
-        const {id} = req.param
+        const {id} = req.params
 
         const chat = await Chat.findOne({_id:id,UserId}) 
 
@@ -52,8 +52,8 @@ exports.getChatById = async(req,res) => {
 
 exports.addMessage = async(req,res) => {
     try {
-        const UserId = req.body.id
-        const {id} = req.param
+        const UserId = req.user.id
+        const {id} = req.params
         const {title,content} = req.body
 
         if(!title || !content){
