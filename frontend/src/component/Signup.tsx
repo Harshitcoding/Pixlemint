@@ -83,7 +83,7 @@ const Signup = () => {
        </div>
        <div className="flex-1  flex items-center justify-center">
         <img
-        src="/public/ai.jpg"
+        src="/ai.jpg"
         className="object-cover w-full h-full"
         />
        </div>
