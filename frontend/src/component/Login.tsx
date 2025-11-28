@@ -55,7 +55,7 @@ const Login = () => {
             {error && <div style={{ color: "red" }}>{error}</div>}
             <Link 
             className="text-blue-400 hover:underline" 
-            to="/signup">Create new account Singup?
+            to="/signup">Don't have an account? Signup
             </Link>
         </form>
        </div>
