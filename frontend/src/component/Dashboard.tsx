@@ -141,14 +141,16 @@ const Dashboard = () => {
         </div>
 
         {/* Mobile menu button */}
-        {isAuthenticated && (
-          <button
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="fixed bottom-4 left-4 z-40 md:hidden w-12 h-12 rounded-full bg-white text-black flex items-center justify-center shadow-lg"
-          >
-            {sidebarOpen ? '✕' : '☰'}
-          </button>
-        )}
+       {/* Mobile menu button */}
+{isAuthenticated && (
+  <button
+    onClick={() => setSidebarOpen(!sidebarOpen)}
+    className="fixed top-4 left-4 z-40 md:hidden w-12 h-10  rounded-full text-white flex items-center justify-center shadow-lg"
+  >
+    {sidebarOpen ? '✕' : '☰'}
+  </button>
+)}
+
       </div>
     </div>
   )

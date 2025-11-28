@@ -18,8 +18,9 @@ export const Sidebar = ({
   onLogout 
 }: SidebarProps) => {
   return (
-    <div className="w-72 h-screen border-r border-white/10 bg-black/40 backdrop-blur-sm flex flex-col">
-      
+    <div className="w-72 h-screen border-r border-white/10 bg-black/40 backdrop-blur-sm flex flex-col pt-16 md:pt-0">
+      {/* 👆 Added pt-16 md:pt-0 */}
+
       {/* New Chat Button */}
       <div className="p-4 border-b border-white/10">
         <button
@@ -37,6 +38,7 @@ export const Sidebar = ({
           <h3 className="text-sm font-semibold text-gray-400 mb-3 uppercase tracking-wider">
             Chat History
           </h3>
+
           {chatSessions.length === 0 ? (
             <p className="text-sm text-gray-500 text-center py-8">
               No previous chats
@@ -66,7 +68,6 @@ export const Sidebar = ({
           Logout
         </button>
       </div>
-
     </div>
   )
 }
