@@ -2,7 +2,8 @@
 
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { LogOut, Menu, X } from "lucide-react"
+import { Code2, LogOut, Menu, X } from "lucide-react"
+import { Link } from "react-router-dom"
 
 const Navbar = () => {
   const navigate = useNavigate()
@@ -14,12 +15,15 @@ const Navbar = () => {
   }
 
   return (
-    <header className="bg-black border-b border-white/10 sticky top-0 z-50">
-      <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <header className="sticky top-0 z-50 border-b border-white/[0.07] bg-[#09090b]/80 backdrop-blur-xl">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-6">
         {/* Logo */}
-        <h1 className="text-2xl font-bold bg-linear-to-r from-white to-gray-400 bg-clip-text text-transparent hover:from-gray-100 hover:to-gray-300 transition-all cursor-pointer">
-          Pixlemint
-        </h1>
+        <Link to="/home" className="flex items-center gap-2.5">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-white/[0.06]">
+            <Code2 className="h-4 w-4 text-[#a5a9ff]" />
+          </div>
+          <span className="text-lg font-semibold tracking-tight">Pixlemint</span>
+        </Link>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-4">

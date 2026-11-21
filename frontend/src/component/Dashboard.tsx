@@ -91,7 +91,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="h-screen overflow-hidden bg-black text-white">
+    <div className="h-screen overflow-hidden bg-[#09090b] text-white">
       <BackgroundEffects />
       
       <div className="relative z-10 flex h-full">

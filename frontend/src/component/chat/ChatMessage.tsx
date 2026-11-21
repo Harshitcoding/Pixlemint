@@ -10,31 +10,31 @@ interface ChatMessageProps {
 export const ChatMessage = ({ message }: ChatMessageProps) => (
   <div className={`flex gap-3 md:gap-4 ${message.type === "user" ? "justify-end" : "justify-start"}`}>
     {message.type === "ai" && (
-      <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-white/10 flex items-center justify-center flex-shrink:0">
-        <MessageSquare className="w-4 h-4 md:w-5 md:h-5 text-gray-400" />
+      <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.055]">
+        <MessageSquare className="h-4 w-4 text-[#a5a9ff]" />
       </div>
     )}
     <div
       className={`flex-1 max-w-3xl ${
         message.type === "user"
-          ? "bg-white/10 border border-white/20"
-          : "bg-white/5 border border-white/10"
-      } rounded-2xl p-3 md:p-4`}
+          ? "border border-[#858cff]/20 bg-[#858cff]/10"
+          : "border border-white/[0.08] bg-white/[0.035]"
+      } rounded-2xl p-4 md:p-5`}
     >
       {message.type === "ai" ? (
-        <div className="prose prose-invert prose-sm md:prose-base max-w-none text-gray-300">
+        <div className="prose prose-invert prose-sm max-w-none text-zinc-300 md:prose-base">
           <ReactMarkdown remarkPlugins={[remarkGfm]}>
             {typeof message.content === "string" ? message.content : JSON.stringify(message.content)}
           </ReactMarkdown>
         </div>
       ) : (
-        <pre className="text-xs md:text-sm bg-black/40 rounded-lg p-3 md:p-4 overflow-x-auto border border-white/10">
-          <code className="text-gray-300">{message.content}</code>
+        <pre className="overflow-x-auto rounded-xl border border-white/[0.07] bg-black/30 p-3 text-xs text-zinc-300 md:p-4 md:text-sm">
+          <code>{message.content}</code>
         </pre>
       )}
     </div>
     {message.type === "user" && (
-      <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-white text-black flex items-center justify-center flex-shrink:0 font-semibold text-xs">
+      <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-white text-[10px] font-bold text-black">
         YOU
       </div>
     )}

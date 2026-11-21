@@ -9,7 +9,7 @@ interface ChatSessionProps {
 
 export const ChatSessionItem = ({ session, onLoad, onDelete }: ChatSessionProps) => (
   <div
-    className="group relative p-3 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 cursor-pointer transition-all duration-200"
+    className="group relative cursor-pointer rounded-xl border border-transparent p-3 transition hover:border-white/[0.08] hover:bg-white/[0.04]"
     onClick={() => onLoad(session._id)}
   >
     <div className="flex items-start justify-between gap-2">

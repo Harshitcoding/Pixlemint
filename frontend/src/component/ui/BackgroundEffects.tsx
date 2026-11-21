@@ -1,6 +1,6 @@
 export const BackgroundEffects = () => (
   <>
-    <div className="fixed inset-0 bg-linear-to-br from-slate-900/20 via-black to-black pointer-events-none" />
+    <div className="fixed inset-0 bg-[radial-gradient(circle_at_55%_-10%,rgba(124,131,255,.10),transparent_28rem)] pointer-events-none" />
     <div 
       className="fixed inset-0 opacity-5 pointer-events-none" 
       style={{

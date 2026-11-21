@@ -18,11 +18,10 @@ export const Sidebar = ({
   onLogout 
 }: SidebarProps) => {
   return (
-    <div className="w-72 h-screen border-r border-white/10 bg-black/40 backdrop-blur-sm flex flex-col pt-16 md:pt-0">
-      {/* 👆 Added pt-16 md:pt-0 */}
+    <div className="flex h-screen w-72 flex-col border-r border-white/[0.07] bg-[#0d0d10]/95 pt-16 backdrop-blur-xl md:pt-0">
 
       {/* New Chat Button */}
-      <div className="p-4 border-b border-white/10">
+      <div className="p-3">
         <button
           onClick={onNewChat}
           className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-white font-semibold transition-all duration-300 hover:bg-white/10 hover:scale-105 active:scale-95"
