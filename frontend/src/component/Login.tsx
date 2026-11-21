@@ -30,7 +30,8 @@ const Login = () => {
             try {
                 res = await axios.post("https://pixlemintt.onrender.com/auth/login", payload, { timeout: 60000 })
             } catch (firstError: any) {
-                if (firstError.code === "ECONNABORTED" || !firstError.response) {
+                if (firstError.code === "ECONNABORTED" || !firstError.response || firstError.response.status === 503) {
+                    await new Promise(resolve => window.setTimeout(resolve, 2500))
                     res = await axios.post("https://pixlemintt.onrender.com/auth/login", payload, { timeout: 60000 })
                 } else {
                     throw firstError
@@ -43,6 +44,8 @@ const Login = () => {
             console.log(error)
             if (error.code === "ECONNABORTED") {
                 setError("The server is taking longer than expected. Please try again.")
+            } else if (error.response?.status === 503) {
+                setError("The server is starting. Please wait a moment and try again.")
             } else {
                 setError(error.response?.data?.message || "Login failed. Please check your credentials.")
             }

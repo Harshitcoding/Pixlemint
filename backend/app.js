@@ -18,6 +18,17 @@ app.use(cors({
 
 require("dotenv").config()
 
+app.get("/health", (req, res) => {
+    const mongoose = require("mongoose")
+    const databaseState = ["disconnected", "connected", "connecting", "disconnecting"][mongoose.connection.readyState] || "unknown"
+
+    res.status(databaseState === "connected" ? 200 : 503).json({
+        success: databaseState === "connected",
+        status: databaseState,
+        uptimeSeconds: Math.floor(process.uptime())
+    })
+})
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use("/auth", authRoutes);

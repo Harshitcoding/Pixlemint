@@ -1,9 +1,14 @@
 const bcrypt = require("bcrypt")
+const mongoose = require("mongoose")
 const User = require('../models/user.model')
 const {generateToken} = require("../utils/jwt")
 
 exports.register = async (req, res) => {
     try {
+        if (mongoose.connection.readyState !== 1) {
+            return res.status(503).json({ success: false, message: "Database is waking up. Please retry." })
+        }
+
         const { FirstName, LastName, password, email } = req.body
 
         if (!FirstName || !LastName || !email || !password) {
@@ -43,6 +48,10 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res) => {
     try {
+        if (mongoose.connection.readyState !== 1) {
+            return res.status(503).json({ success: false, message: "Database is waking up. Please retry." })
+        }
+
         const { email, password } = req.body;
         if (!email || !password) {
             return res.status(400).json({ success: false, message: "missing field" })
